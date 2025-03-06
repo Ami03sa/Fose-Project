@@ -1,73 +1,49 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
-import "./App.css";
+import './request.css'; // Import CSS file for styling
 
-function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Hook for navigation
+const Request = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    contact: "",
+    location: "",
+    emergencyType: "",
+    urgencyLevel: "",
+    helpCategories: [],
+    details: "",
+  });
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (username && password) {
-      alert(`Logging in as: ${username}`);
-      navigate("/dashboard"); // Redirect to dashboard
-    } else {
-      alert("Invalid credentials");
-    }
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  return (
-    <div className="container">
-      <h1>Disaster Assistance Management System</h1>
-      <div className="login-box">
-        <h2>Login</h2>
-        <form onSubmit={handleLogin}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit">Login</button>
-        </form>
-      </div>
-    </div>
-  );
-}
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+    let updatedCategories = [...formData.helpCategories];
 
-function Dashboard() {
-  return (
-    <div className="container">
-      <h1>Welcome to the Dashboard</h1>
-      <div className="options-box">
-        <h2>What would you like to do?</h2>
-        <ul>
-          <li>
-            <button onClick={() => alert("Request Help Selected")}>
-              Request Help
-            </button>
-          </li>
-          <li>
-            <button onClick={() => alert("Respond to Help Selected")}>
-              Respond to Help
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-}
+    if (checked) {
+      updatedCategories.push(value);
+    } else {
+      updatedCategories = updatedCategories.filter((item) => item !== value);
+    }
 
-function Request(){
+    setFormData({
+      ...formData,
+      helpCategories: updatedCategories,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Data Submitted:", formData);
+    setSubmitted(true);
+  };
+
   return (
     <div className="request-help-page">
       <h1>Request Help</h1>
@@ -232,19 +208,4 @@ function Request(){
   );
 };
 
-
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/request" element={<Request />} /> 
-      </Routes>
-    </Router>
-  );
-}
-export default App;
-
-
-
+export default Request;
