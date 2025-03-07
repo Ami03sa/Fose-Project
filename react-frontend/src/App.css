@@ -1,32 +1,58 @@
-.container {
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f4f7fc;
+  color: #333;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #ffffff;
-  padding: 20px; 
+  align-items: center;
+}
+
+h1, h2 {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 h1 {
-  color: #000000;
-  margin-bottom: 20px;
-  text-align: center; 
+  font-size: 2rem;
+  margin-bottom: 40px;
 }
 
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* Container for login, dashboard, and request pages */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Login Box */
 .login-box {
   background: white;
-  padding: 30px; 
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  width: 100%; 
-  max-width: 400px; 
-}
-
-.login-box h2 {
-  margin-bottom: 20px; 
-  color: #333;
-  text-align: center; 
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
 input {
@@ -36,7 +62,7 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 button {
@@ -49,9 +75,130 @@ button {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
-  margin-top: 10px; 
 }
 
 button:hover {
   background-color: #0056b3;
+}
+
+button:active {
+  background-color: #004085;
+}
+
+/* Dashboard */
+.options-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.options-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.options-box li {
+  margin: 10px 0;
+}
+
+.options-box button {
+  padding: 15px 30px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 200px;
+}
+
+.options-box button:hover {
+  background-color: #218838;
+}
+
+/* Request Help */
+.request-help-page {
+  width: 100%;
+  max-width: 1500px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.request-help-page form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-section {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+button[type="submit"]:active {
+  background-color: #004085;
+}
+
+/* Success Message */
+.success-message {
+  padding: 20px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.success-message h2 {
+  margin-bottom: 10px;
+}
+
+.success-message p {
+  font-size: 16px;
 }

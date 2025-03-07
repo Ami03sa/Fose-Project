@@ -1,20 +1,25 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../App.css";
 
 function Dashboard() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // useNavigate hook to handle navigation
 
   return (
     <div className="container">
-      <h1>Welcome to the Dashboard</h1>
+      <h1>Dashboard</h1>
       <div className="options-box">
-        <h2>What would you like to do?</h2>
         <ul>
           <li>
             <button onClick={() => navigate("/request")}>Request Help</button>
           </li>
           <li>
-            <button onClick={() => alert("Respond to Help Selected")}>
+            <button
+              onClick={() => {
+                alert("Respond to Help option selected");
+                // You can also add more functionality here for responding to help
+              }}
+            >
               Respond to Help
             </button>
           </li>

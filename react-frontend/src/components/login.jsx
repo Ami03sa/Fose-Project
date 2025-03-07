@@ -1,13 +1,22 @@
 import React, { useState } from "react";
-import "./App.css";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import "../App.css";
 
-function login() {
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // useNavigate hook to handle navigation
 
   const handleLogin = (e) => {
     e.preventDefault();
-    alert(`Logging in as: ${username}`);
+
+    // Check if the username and password are correct
+    if (username === "admin" && password === "admin123") {
+      alert("Login successful!");
+      navigate("/dashboard"); // Redirect to dashboard if login is successful
+    } else {
+      alert("Invalid username or password. Please try again.");
+    }
   };
 
   return (
@@ -37,4 +46,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
