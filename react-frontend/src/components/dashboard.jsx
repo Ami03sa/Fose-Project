@@ -14,14 +14,7 @@ function Dashboard() {
             <button onClick={() => navigate("/request")}>Request Help</button>
           </li>
           <li>
-            <button
-              onClick={() => {
-                alert("Respond to Help option selected");
-                // You can also add more functionality here for responding to help
-              }}
-            >
-              Respond to Help
-            </button>
+            <button onClick={() => navigate("/respond")}>Respond to Help</button>
           </li>
         </ul>
       </div>
