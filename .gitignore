@@ -1,0 +1,4 @@
+venv/
+backend/venv
+react-frontend/package-lock.json
+react-frontend/package.json
