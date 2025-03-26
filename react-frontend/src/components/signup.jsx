@@ -26,7 +26,7 @@ function Signup() {
 
       if (response.ok) {
         alert("Signup successful! Please log in.");
-        navigate("/"); // Redirect to login page
+        navigate("/login"); // Redirect to login page
       } else {
         alert(data.error || "Signup failed. Try again.");
       }
