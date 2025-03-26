@@ -41,6 +41,12 @@ function Login() {
           />
           <button type="submit">Login</button>
         </form>
+        <p>
+          No account?{" "}
+          <button onClick={() => navigate("/signup")} className="signup-button">
+            Sign Up!
+            </button>
+        </p>
       </div>
     </div>
   );
