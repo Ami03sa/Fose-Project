@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // useNavigate hook to handle navigation
+  const [role, setRole] = useState("Donor"); // Default role
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -13,6 +14,7 @@ function Login() {
     const data = {
       username,
       password,
+      role,
     };
 
     try {
@@ -27,17 +29,23 @@ function Login() {
       const result = await response.json();
 
       if (response.ok) {
-        // If login is successful, redirect to the dashboard or another page
         alert("Login successful!");
-        navigate("/dashboard"); // Redirect to dashboard
+        if (role === "Donor") {
+          navigate("/respond");
+        } else if (role === "Recipient") {
+          navigate("/request");
+        } else if (role === "Admin") {
+          navigate("/admin");
+        }
       } else {
-        alert(result.error); // Display error message
+        alert(result.error);
       }
     } catch (error) {
       console.error("Login error:", error);
       alert("Something went wrong. Please try again.");
     }
   };
+
   return (
     <div className="container">
       <h1>Disaster Assistance Management System</h1>
@@ -58,13 +66,19 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <label>Select Role:</label>
+          <select value={role} onChange={(e) => setRole(e.target.value)} required>
+            <option value="Donor">Donor</option>
+            <option value="Recipient">Recipient</option>
+            <option value="Admin">Admin</option>
+          </select>
           <button type="submit">Login</button>
         </form>
         <p>
-          No account?{" "}
+          No account? {" "}
           <button onClick={() => navigate("/signup")} className="signup-button">
             Sign Up!
-            </button>
+          </button>
         </p>
       </div>
     </div>
@@ -72,3 +86,4 @@ function Login() {
 }
 
 export default Login;
+
