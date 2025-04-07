@@ -91,11 +91,10 @@ def signup():
         data = request.get_json()
         username = data['username']
         password = data['password']
-        account_type = data['accountType']
 
         password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-        if not username or not password or not account_type:
+        if not username or not password:
             return jsonify({'error': 'Missing fields'}), 400
 
         cur = mysql.connection.cursor()
@@ -105,8 +104,8 @@ def signup():
         if existing_user:
             return jsonify({'error': 'Username already taken'}), 400
 
-        cur.execute("INSERT INTO users (username, password_hash, account_type) VALUES (%s, %s, %s)",
-            (username, password_hash, account_type))
+        cur.execute("INSERT INTO users (username, password_hash) VALUES (%s, %s)",
+            (username, password_hash))
 
         mysql.connection.commit()
         cur.close()

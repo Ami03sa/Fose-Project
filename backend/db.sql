@@ -8,7 +8,6 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    account_type ENUM('user', 'admin', 'donor', 'recipient') NOT NULL
 );
 
 
