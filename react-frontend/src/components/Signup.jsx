@@ -84,6 +84,12 @@ function Signup() {
           <button type="submit" style={{ padding: "0.75rem", borderRadius: "4px", background: "#333", color: "#fff", border: "none" }}>
             Signup
           </button>
+          <p style={{ marginTop: "1rem", textAlign: "center" }}>
+            Already have an account?{" "}
+              <a href="/login" style={{ color: "#007bff", textDecoration: "underline" }}>
+                Log in here
+            </a>
+          </p>
         </form>
       </div>
     </motion.div>
