@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./components/Login";
 import Request from "./components/Request";
-import Signup from "./components/signup";
+import Signup from "./components/Signup";
 import Respond from "./components/Respond";
 import Admin from "./components/Admin";
 
@@ -15,7 +15,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/request" element={<Request />} />
         <Route path="/respond" element={<Respond />} />
-        <Route path="/admin" element={<Respond />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   );
