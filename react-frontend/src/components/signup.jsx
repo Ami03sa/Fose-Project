@@ -56,12 +56,6 @@ function Signup() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <select value={accountType} onChange={(e) => setAccountType(e.target.value)}>
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-            <option value="donor">Donor</option>
-            <option value="recipient">Recipient</option>
-          </select>
           <button type="submit">Signup</button>
         </form>
       </div>
