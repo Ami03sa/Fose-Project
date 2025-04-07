@@ -38,11 +38,31 @@ const Request = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-    setSubmitted(true);
+    try {
+      const response = await fetch("http://localhost:5000/api/request-help", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        console.log("Success:", data);
+        setSubmitted(true);
+      } else {
+        alert(data.error || "Submission failed.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Something went wrong.");
+    }
   };
+  
 
   return (
     <div className="request-help-page">
