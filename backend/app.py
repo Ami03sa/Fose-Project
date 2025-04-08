@@ -144,6 +144,20 @@ def request_help():
         return jsonify({"error": "Failed to submit request"}), 500
 
 
+@app.route('/api/help-requests', methods=['GET'])
+def get_help_requests():
+    try:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM help_requests")
+        requests = cursor.fetchall()
+        return jsonify({'requests': requests}), 200
+    except Exception as e:
+        print("Error loading help requests:", str(e))
+        return jsonify({'error': 'Failed to load requests'}), 500
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

@@ -1,22 +1,36 @@
-import React, { useState } from "react";
-import '../App.css'; // Import CSS file for styling
+import React, { useEffect, useState } from "react";
+import '../App.css';
 
 const Respond = () => {
   const [responses, setResponses] = useState([]);
+  const [requests, setRequests] = useState([]); // 🔹 to store help requests
+  const [expandedCards, setExpandedCards] = useState([]);
+
   const [responseData, setResponseData] = useState({
     name: "",
     contact: "",
     assistanceType: "",
     additionalDetails: ""
   });
+
   const [submitted, setSubmitted] = useState(false);
+
+  // 🔹 Fetch help requests from backend on page load
+  useEffect(() => {
+    fetch("http://localhost:5000/api/help-requests")
+      .then((res) => res.json())
+      .then((data) => {
+        const fetchedRequests = data.requests || [];
+        setRequests(fetchedRequests);
+        setExpandedCards(new Array(fetchedRequests.length).fill(false));
+      })
+      .catch((err) => console.error("Error loading requests:", err));
+  }, []);
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setResponseData({
-      ...responseData,
-      [name]: value,
-    });
+    setResponseData({ ...responseData, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -26,11 +40,46 @@ const Respond = () => {
     setSubmitted(true);
   };
 
+  const toggleDetails = (index) => {
+    setExpandedCards((prev) => {
+      const updated = [...prev];
+      updated[index] = !updated[index]; // Toggle only the clicked one
+      return updated;
+    });
+  };
+  
+
   return (
     <div className="respond-help-page">
       <h1>Respond to Help Requests</h1>
       <p>Fill out the form below to offer assistance for those in need.</p>
 
+      <div className="requests-grid">
+  {requests.map((req, index) => (
+    <div key={req.id} className="request-card">
+      <div
+        className="request-header"
+        onClick={() => toggleDetails(index)}
+      >
+        {req.name}
+        <span className="arrow">{expandedCards[index] ? "▲" : "▼"}</span>
+      </div>
+      {expandedCards[index] && (
+        <div className="request-details">
+          <p><strong>Contact:</strong> {req.contact}</p>
+          <p><strong>Location:</strong> {req.location}</p>
+          <p><strong>Emergency:</strong> {req.emergency_type}</p>
+          <p><strong>Urgency:</strong> {req.urgency_level}</p>
+          <p><strong>Help Needed:</strong> {req.help_categories}</p>
+          <p><strong>Details:</strong> {req.details}</p>
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
+
+      {/* 📝 Response form */}
       {submitted ? (
         <div className="success-message">
           <h2>Thank you for your response!</h2>

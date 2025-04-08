@@ -202,3 +202,51 @@ button[type="submit"]:active {
 .success-message p {
   font-size: 16px;
 }
+
+.requests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 16px;
+  margin-top: 20px;
+  max-width: 100%;
+}
+
+.request-card {
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 12px;
+  background-color: #fafafa;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  max-height: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.request-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.request-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.arrow {
+  font-size: 1rem;
+}
+
+.request-details {
+  padding: 8px;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
