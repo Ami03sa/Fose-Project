@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import "../App.css";
 
 function Signup() {
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    const userData = { username, password };
+    const userData = { email, username, password };
 
     try {
       const response = await fetch("http://localhost:5000/api/signup", {
@@ -66,6 +67,14 @@ function Signup() {
         <h2 style={{ marginBottom: "1.5rem" }}>Signup</h2>
         <form onSubmit={handleSignup} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={{ padding: "0.75rem", borderRadius: "4px", border: "1px solid #ccc" }}
+          />
+          <input
             type="text"
             placeholder="Username"
             value={username}
@@ -86,8 +95,8 @@ function Signup() {
           </button>
           <p style={{ marginTop: "1rem", textAlign: "center" }}>
             Already have an account?{" "}
-              <a href="/login" style={{ color: "#007bff", textDecoration: "underline" }}>
-                Log in here
+            <a href="/login" style={{ color: "#007bff", textDecoration: "underline" }}>
+              Log in here
             </a>
           </p>
         </form>
