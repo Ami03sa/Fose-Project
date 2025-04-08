@@ -75,9 +75,14 @@ function Login() {
           <button type="submit">Login</button>
         </form>
         <p>
-          No account? {" "}
+          No account?{" "}
           <button onClick={() => navigate("/signup")} className="signup-button">
             Sign Up!
+          </button>
+        </p>
+        <p>
+          <button onClick={() => navigate("/forgot-password")} className="forgot-password-button">
+            Forgot Password?
           </button>
         </p>
       </div>
@@ -86,4 +91,3 @@ function Login() {
 }
 
 export default Login;
-
