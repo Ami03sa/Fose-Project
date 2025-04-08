@@ -115,6 +115,35 @@ def signup():
         print("Error:", str(e))
         return jsonify({'error': 'Something went wrong', 'details': str(e)}), 500
 
+@app.route('/api/request-help', methods=['POST'])
+def request_help():
+    try:
+        data = request.get_json()
+
+        name = data['name']
+        contact = data['contact']
+        location = data['location']
+        emergency_type = data['emergencyType']
+        urgency_level = data['urgencyLevel']
+        help_categories = ",".join(data['helpCategories'])  # Join list to comma string
+        details = data.get('details', '')
+
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            INSERT INTO help_requests 
+            (name, contact, location, emergency_type, urgency_level, help_categories, details)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """, (name, contact, location, emergency_type, urgency_level, help_categories, details))
+
+        mysql.connection.commit()
+        cur.close()
+        return jsonify({"message": "Request submitted successfully"}), 201
+
+    except Exception as e:
+        print("Error submitting request:", str(e))
+        return jsonify({"error": "Failed to submit request"}), 500
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
