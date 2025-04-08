@@ -66,6 +66,15 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <div className="forgot-password-container">
+            <span 
+              className="forgot-password" 
+              onClick={() => navigate("/forgot-password")}
+              style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
+            >
+              Forgot Password?
+            </span>
+          </div>
           <label>Select Role:</label>
           <select value={role} onChange={(e) => setRole(e.target.value)} required>
             <option value="Donor">Donor</option>
@@ -78,11 +87,6 @@ function Login() {
           No account?{" "}
           <button onClick={() => navigate("/signup")} className="signup-button">
             Sign Up!
-          </button>
-        </p>
-        <p>
-          <button onClick={() => navigate("/forgot-password")} className="forgot-password-button">
-            Forgot Password?
           </button>
         </p>
       </div>
