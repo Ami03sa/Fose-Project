@@ -156,6 +156,43 @@ def get_help_requests():
         return jsonify({'error': 'Failed to load requests'}), 500
 
 
+@app.route('/api/reset-password', methods=['POST'])
+def reset_password():
+    try:
+        data = request.get_json()
+        email = data.get('email')
+        new_password = data.get('newPassword')
+
+        if not email or not new_password:
+            return jsonify({'error': 'Email and new password are required'}), 400
+
+        # Check if the user exists
+        cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cur.execute("SELECT * FROM users WHERE email = %s", (email,))
+        user = cur.fetchone()
+
+        if not user:
+            return jsonify({'error': 'No account associated with this email'}), 404
+
+        # Hash the new password
+        hashed_password = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+        # Update password in the database
+        cur.execute("UPDATE users SET password_hash = %s WHERE email = %s", (hashed_password, email))
+        mysql.connection.commit()
+        cur.close()
+
+        return jsonify({'message': 'Password reset successfully'}), 200
+
+    except Exception as e:
+        print(f"Error during password reset: {str(e)}")
+        return jsonify({'error': 'Something went wrong', 'details': str(e)}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
+
+
+
 
 
 
