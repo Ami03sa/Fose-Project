@@ -5,7 +5,10 @@ import Request from './components/Request';
 import Signup from './components/Signup';
 import Respond from './components/Respond';
 import Admin from './components/Admin';
-import PasswordForget from './components/PasswordForget';  // Corrected import for PasswordForget component
+import AdminDash from './components/AdminDash';
+import RespondDash from './components/RespondDash';
+import RequestDash from './components/RequestDash';
+import PasswordForget from './components/PasswordForget';  
 
 function App() {
   return (
@@ -17,10 +20,14 @@ function App() {
         <Route path="/request" element={<Request />} />
         <Route path="/respond" element={<Respond />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admindash" element={<AdminDash />} />
+        <Route path="/requestdash" element={<RequestDash />} />
+        <Route path="/responddash" element={<RespondDash />} />
         <Route path="/forgot-password" element={<PasswordForget />} />  
       </Routes>
     </Router>
   );
 }
+
 
 export default App;
