@@ -14,10 +14,14 @@ const RespondDash = () => {
 
   return (
     <div className="dashboard">
-      <h1>Donor Dashboard</h1>
-      <div className="card-container">
+      <h1 className="dashboard-title">Donor Dashboard</h1>
+      <div className="card-grid">
         {donorOptions.map((option, idx) => (
-          <div key={idx} className="dashboard-card" onClick={() => navigate(option.path)}>
+          <div
+            key={idx}
+            className="dashboard-card"
+            onClick={() => navigate(option.path)}
+          >
             {option.label}
           </div>
         ))}

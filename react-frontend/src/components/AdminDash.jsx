@@ -15,10 +15,14 @@ const AdminDash = () => {
 
   return (
     <div className="dashboard">
-      <h1>Admin Dashboard</h1>
-      <div className="card-container">
+      <h1 className="dashboard-title">Admin Dashboard</h1>
+      <div className="card-grid">
         {adminOptions.map((option, idx) => (
-          <div key={idx} className="dashboard-card" onClick={() => navigate(option.path)}>
+          <div
+            key={idx}
+            className="dashboard-card"
+            onClick={() => navigate(option.path)}
+          >
             {option.label}
           </div>
         ))}
