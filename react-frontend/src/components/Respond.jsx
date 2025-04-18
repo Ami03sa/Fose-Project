@@ -56,8 +56,8 @@ const Respond = () => {
 
       <div className="requests-grid">
   {requests.map((req, index) => (
-    <div key={req.id} className="request-card">
-      <div
+    <div key={req.id} className={`request-card ${expandedCards[index] ? "expanded" : ""}`}>
+    <div
         className="request-header"
         onClick={() => toggleDetails(index)}
       >
