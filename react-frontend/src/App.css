@@ -171,6 +171,9 @@ button:active {
   cursor: pointer;
   transition: box-shadow 0.3s ease;
   word-wrap: break-word;
+  flex-direction: column;
+  height: fit-content;
+  overflow: hidden;
 }
 
 .request-card:hover {
@@ -185,16 +188,28 @@ button:active {
   font-weight: bold;
 }
 
+.arrow {
+  font-size: 1rem;
+}
+
 /* Expandable Request Details */
 .request-details {
   padding: 8px;
-  transition: max-height 0.3s ease, padding 0.3s ease;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
   overflow: hidden;
   margin-top: 10px;
   font-size: 0.9rem;
-  max-height: 200px;
+  max-height: 0;
+  overflow: hidden;
   overflow-y: auto;
 }
+
+.request-card.expanded .request-details {
+  max-height: 500px;  /* Adjust depending on your max expected content */
+  opacity: 1;
+  padding-top: 10px;
+}
+
 .forgot-password-container {
   width: 100%;
   display: flex;
