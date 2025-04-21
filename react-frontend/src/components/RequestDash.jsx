@@ -8,7 +8,6 @@ const RequestDash = () => {
   const recipientOptions = [
     { label: "Create Request", path: "/recipient/create-request" },
     { label: "Edit Request Items", path: "/recipient/edit-request" },
-    { label: "Archive Item", path: "/recipient/archive-item" },
   ];
 
   return (
