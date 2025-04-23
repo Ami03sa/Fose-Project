@@ -20,7 +20,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/request" element={<Request />} />
         <Route path="/recipient/create-request" element={<Request />} /> 
-        <Route path="/respond" element={<Respond />} /> 
+        <Route path="/donor/respond" element={<Respond />} /> 
         <Route path="/admin" element={<Admin />} />
         <Route path="/admindash" element={<AdminDash />} />
         <Route path="/requestdash" element={<RequestDash />} />
