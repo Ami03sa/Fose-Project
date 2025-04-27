@@ -8,8 +8,9 @@ import Admin from './components/Admin';
 import AdminDash from './components/AdminDash';
 import RespondDash from './components/RespondDash';
 import RequestDash from './components/RequestDash';
-import EditRequest from './components/EditRequest'; // Import EditRequest component
-import PasswordForget from './components/PasswordForget';  
+import EditRequest from './components/EditRequest';
+import PasswordForget from './components/PasswordForget';
+import UpdateShip from './components/UpdateShip.jsx'; 
 
 function App() {
   return (
@@ -20,13 +21,18 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/request" element={<Request />} />
         <Route path="/recipient/create-request" element={<Request />} /> 
-        <Route path="/donor/respond" element={<Respond />} /> 
+        <Route path="/recipient/edit-request" element={<EditRequest />} />
+        <Route path="/forgot-password" element={<PasswordForget />} />
+
+        {/* Donor Routes */}
+        <Route path="/donor/respond" element={<Respond />} />
+        <Route path="/donor/shipped-status" element={<UpdateShip />} /> 
+        <Route path="/responddash" element={<RespondDash />} />
+
+        {/* Admin Routes */}
         <Route path="/admin" element={<Admin />} />
         <Route path="/admindash" element={<AdminDash />} />
         <Route path="/requestdash" element={<RequestDash />} />
-        <Route path="/responddash" element={<RespondDash />} />
-        <Route path="/recipient/edit-request" element={<EditRequest />} /> 
-        <Route path="/forgot-password" element={<PasswordForget />} />  
       </Routes>
     </Router>
   );
