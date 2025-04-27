@@ -9,7 +9,7 @@ const RespondDash = () => {
     { label: "Respond to Request", path: "/donor/respond" },
     { label: "Make a Pledge", path: "/donor/pledge" },
     { label: "Update Shipped Status", path: "/donor/shipped-status" },
-    { label: "Associate with Disaster", path: "/donor/disaster-association" },
+    // Removed "Associate with Disaster"
   ];
 
   return (
