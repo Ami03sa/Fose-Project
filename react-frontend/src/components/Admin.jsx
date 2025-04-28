@@ -9,9 +9,9 @@ function Admin() {
     <div className="container">
       <h1>Admin Dashboard</h1>
       <div className="admin-options">
-        <button onClick={() => navigate("/request")}>View All Requests</button>
-        <button onClick={() => navigate("/respond")}>View All Responses</button>
-        <button onClick={() => navigate("/dashboard")}>System Management</button>
+        <button onClick={() => navigate("/Request")}>View All Requests</button>
+        <button onClick={() => navigate("/Respond")}>View All Responses</button>
+        <button onClick={() => navigate("/Dashboard")}>System Management</button>
       </div>
     </div>
   );
