@@ -228,3 +228,37 @@ button:active {
 .forgot-password:hover {
   color: #0056b3;
 }
+
+.dashboard {
+  padding: 2rem;
+  text-align: center;
+  background-color: #f7f9fc;
+  min-height: 100vh;
+}
+
+.dashboard-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.card-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.dashboard-card {
+  background-color: white;
+  border: 2px solid #007bff;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  min-width: 220px;
+  font-size: 1.2rem;
+  color: #007bff;
+  cursor: pointer;
+  text-align: center;
+  /* No hover styles */
+}
+

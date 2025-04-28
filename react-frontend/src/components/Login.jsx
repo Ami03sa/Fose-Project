@@ -30,12 +30,13 @@ function Login() {
 
       if (response.ok) {
         alert("Login successful!");
+        // Navigate to role-specific dashboard
         if (role === "Donor") {
-          navigate("/respond");
+          navigate("/respond-dash"); // Donor -> RespondDash.jsx
         } else if (role === "Recipient") {
-          navigate("/request");
+          navigate("/request-dash"); // Recipient -> RequestDash.jsx
         } else if (role === "Admin") {
-          navigate("/admin");
+          navigate("/admin-dash"); // Admin -> AdminDash.jsx
         }
       } else {
         alert(result.error);
