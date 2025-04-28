@@ -18,6 +18,7 @@ const DonationItemMaintenance = () => {
       })
       .catch(error => {
         console.error("Error fetching donation items:", error);
+        
       });
   };
 
@@ -29,7 +30,13 @@ const DonationItemMaintenance = () => {
       })
       .catch(error => {
         console.error("Error adding donation item:", error);
-      });
+              // TEMPORARY fake fallback
+      setDonationItems([
+        { id: 1, name: "Blankets", description: "Warm blankets", quantity: 100 },
+        { id: 2, name: "Food Packages", description: "Non-perishable food", quantity: 200 },
+      ]);
+    });
+      
   };
 
   const handleUpdate = (id) => {
