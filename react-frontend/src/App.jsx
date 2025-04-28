@@ -12,6 +12,7 @@ import EditRequest from './components/EditRequest';
 import PasswordForget from './components/PasswordForget';
 import UpdateShip from './components/UpdateShip.jsx'; 
 import ShipAdvice from './components/ShipAdvice.jsx';
+import CreateDisaster from './components/CreateDisaster.jsx';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admindash" element={<AdminDash />} />
         <Route path="/admin/shipping-advice" element={<ShipAdvice />} />
+        <Route path="/admin/disaster-event" element={<CreateDisaster />} />
 
 
       </Routes>
