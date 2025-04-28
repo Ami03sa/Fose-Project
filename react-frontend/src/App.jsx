@@ -11,6 +11,7 @@ import RequestDash from './components/RequestDash';
 import EditRequest from './components/EditRequest';
 import PasswordForget from './components/PasswordForget';
 import UpdateShip from './components/UpdateShip.jsx'; 
+import ShipAdvice from './components/ShipAdvice.jsx';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/recipient/create-request" element={<Request />} /> 
         <Route path="/recipient/edit-request" element={<EditRequest />} />
         <Route path="/forgot-password" element={<PasswordForget />} />
+        <Route path="/requestdash" element={<RequestDash />} />
 
         {/* Donor Routes */}
         <Route path="/donor/respond" element={<Respond />} />
@@ -32,7 +34,9 @@ function App() {
         {/* Admin Routes */}
         <Route path="/admin" element={<Admin />} />
         <Route path="/admindash" element={<AdminDash />} />
-        <Route path="/requestdash" element={<RequestDash />} />
+        <Route path="/admin/shipping-advice" element={<ShipAdvice />} />
+
+
       </Routes>
     </Router>
   );
