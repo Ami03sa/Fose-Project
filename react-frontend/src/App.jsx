@@ -14,6 +14,7 @@ import UpdateShip from './components/UpdateShip.jsx';
 import ShipAdvice from './components/ShipAdvice.jsx';
 import CreateDisaster from './components/CreateDisaster.jsx';
 import Match from './components/Match.jsx';
+import AdminMaintenance from "./components/AdminMaintenance.jsx";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/admin/shipping-advice" element={<ShipAdvice />} />
         <Route path="/admin/disaster-event" element={<CreateDisaster />} />
         <Route path="/admin/match" element={<Match />} />
+        <Route path="/admin/items" element={<AdminMaintenance/>} />
 
 
       </Routes>
