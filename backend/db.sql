@@ -21,3 +21,14 @@ CREATE TABLE help_requests (
     details TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE IF EXISTS pledges;
+CREATE TABLE pledges (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    contact VARCHAR(100) NOT NULL,
+    assistance_type VARCHAR(100) NOT NULL,
+    quantity_or_details TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
