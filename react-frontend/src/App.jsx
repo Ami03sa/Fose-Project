@@ -15,6 +15,7 @@ import ShipAdvice from './components/ShipAdvice.jsx';
 import CreateDisaster from './components/CreateDisaster.jsx';
 import Match from './components/Match.jsx';
 import AdminMaintenance from "./components/AdminMaintenance.jsx";
+import Pledge from "./components/Pledge.jsx";
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
         <Route path="/Recipient/edit-request" element={<EditRequest />} />
         <Route path="/Forgot-Password" element={<PasswordForget />} />
         <Route path="/RequestDash" element={<RequestDash />} />
+        <Route path="/donor/Pledge" element={<Pledge />} />
+
 
         {/* Donor Routes */}
         <Route path="/Donor/Respond" element={<Respond />} />
