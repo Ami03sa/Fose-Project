@@ -32,3 +32,10 @@ CREATE TABLE pledges (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+DROP TABLE IF EXISTS matches;
+CREATE TABLE matches (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    request_id INT,
+    pledge_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

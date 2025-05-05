@@ -214,6 +214,30 @@ def create_pledge():
         print("Error creating pledge:", str(e))
         return jsonify({'error': 'Failed to create pledge'}), 500
 
+@app.route('/api/pledges', methods=['GET'])
+def get_pledges():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute("SELECT * FROM pledges")
+    pledges = cursor.fetchall()
+    return jsonify({'pledges': pledges}), 200
+
+
+@app.route('/api/match', methods=['POST'])
+def match_request_to_pledge():
+    data = request.get_json()
+    request_id = data['requestId']
+    pledge_id = data['pledgeId']
+
+    cursor = mysql.connection.cursor()
+    cursor.execute("""
+        INSERT INTO matches (request_id, pledge_id)
+        VALUES (%s, %s)
+    """, (request_id, pledge_id))
+    mysql.connection.commit()
+    cursor.close()
+
+    return jsonify({'message': 'Request and pledge matched successfully!'}), 201
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
