@@ -238,6 +238,31 @@ def match_request_to_pledge():
 
     return jsonify({'message': 'Request and pledge matched successfully!'}), 201
 
+@app.route('/api/respond', methods=['POST'])
+def create_response():
+    try:
+        data = request.get_json()
+        request_id = data['requestId']
+        name = data['name']
+        contact = data['contact']
+        assistance_type = data['assistanceType']
+        details = data.get('additionalDetails', '')
+
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            INSERT INTO responses (request_id, name, contact, assistance_type, details)
+            VALUES (%s, %s, %s, %s, %s)
+        """, (request_id, name, contact, assistance_type, details))
+        mysql.connection.commit()
+        cur.close()
+
+        return jsonify({'message': 'Response created successfully'}), 201
+    except Exception as e:
+        print("Error creating response:", str(e))
+        return jsonify({'error': 'Failed to create response'}), 500
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
