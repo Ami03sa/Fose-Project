@@ -22,6 +22,9 @@ app.config['MYSQL_DB'] = os.getenv('MYSQL_DB')
 
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173", "methods": ["GET", "POST", "OPTIONS"]}}, supports_credentials=True)
 
+
+
+
 mysql = MySQL(app)  # Use DictCursor
 
 with app.app_context():
@@ -84,8 +87,16 @@ def login():
 # Signup route
 @app.route('/api/signup', methods=['POST', 'OPTIONS'])
 def signup():
-    if request.method == 'OPTIONS':  # Handle preflight request
-        return '', 200
+    #if request.method == 'OPTIONS':  # Handle preflight request
+       # return '', 200
+
+    if request.method == 'OPTIONS':
+        response = jsonify({'message': 'Preflight request successful'})
+        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:5173')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        response.headers.add('Access-Control-Allow-Methods', 'POST')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response, 200
 
     try:
         data = request.get_json()
@@ -246,6 +257,3 @@ if __name__ == '__main__':
 
 
 
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)

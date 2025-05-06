@@ -7,16 +7,21 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError("");
 
     const userData = { email, username, password };
 
     try {
       const response = await fetch("http://localhost:5000/api/signup", {
         method: "POST",
+        credentials: 'include', // Important for CORS with credentials
         headers: {
           "Content-Type": "application/json",
         },
@@ -25,15 +30,18 @@ function Signup() {
 
       const data = await response.json();
 
-      if (response.ok) {
-        alert("Signup successful! Please log in.");
-        navigate("/login");
-      } else {
-        alert(data.error || "Signup failed. Try again.");
+      if (!response.ok) {
+        throw new Error(data.error || "Signup failed. Please try again.");
       }
+
+      alert("Signup successful! Please log in.");
+      navigate("/login");
     } catch (error) {
       console.error("Signup error:", error);
-      alert("Something went wrong.");
+      setError(error.message);
+      alert(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -65,6 +73,11 @@ function Signup() {
         }}
       >
         <h2 style={{ marginBottom: "1.5rem" }}>Signup</h2>
+        {error && (
+          <div style={{ color: "red", marginBottom: "1rem" }}>
+            {error}
+          </div>
+        )}
         <form onSubmit={handleSignup} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <input
             type="email"
@@ -88,10 +101,22 @@ function Signup() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            minLength="6"
             style={{ padding: "0.75rem", borderRadius: "4px", border: "1px solid #ccc" }}
           />
-          <button type="submit" style={{ padding: "0.75rem", borderRadius: "4px", background: "#333", color: "#fff", border: "none" }}>
-            Signup
+          <button 
+            type="submit" 
+            disabled={isLoading}
+            style={{ 
+              padding: "0.75rem", 
+              borderRadius: "4px", 
+              background: "#333", 
+              color: "#fff", 
+              border: "none",
+              cursor: isLoading ? "not-allowed" : "pointer"
+            }}
+          >
+            {isLoading ? "Signing up..." : "Signup"}
           </button>
           <p style={{ marginTop: "1rem", textAlign: "center" }}>
             Already have an account?{" "}
