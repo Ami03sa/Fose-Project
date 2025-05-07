@@ -8,7 +8,7 @@ const AdminDash = () => {
   const adminOptions = [
     { label: "Maintain Donation Items", path: "/admin/items" },
     { label: "Create Disaster Event", path: "/admin/disaster-event" },
-    { label: "Match Requests", path: "/admin/match" },
+    { label: " Manually Match Requests", path: "/admin/match" },
     { label: "Initiate Shipping Advice", path: "/admin/shipping-advice" },
   ];
 
