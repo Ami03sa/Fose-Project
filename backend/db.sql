@@ -4,10 +4,12 @@ USE dams;
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    password_hash VARCHAR(255) NOT NULL
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(100) UNIQUE,
+    email VARCHAR(100) UNIQUE, 
+    password_hash TEXT
 );
+
 
 DROP TABLE IF EXISTS help_requests;
 CREATE TABLE help_requests (
