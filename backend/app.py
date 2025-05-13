@@ -250,9 +250,9 @@ def match_request_to_pledge():
     return jsonify({'message': 'Request and pledge matched successfully!'}), 201
 
 
+# Export app for testing
+__all__ = ['app']
+application = app
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
-
-
-
-
